@@ -1,0 +1,8 @@
+# No ignorado
+!.gitignore
+
+!tradeshop-ts1/
+
+# Ignorar todo
+*
+
