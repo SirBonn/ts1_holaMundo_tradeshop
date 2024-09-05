@@ -68,3 +68,84 @@ function getTotallyEarnings()
         return null;
     }
 }
+
+function getTotallyPostsAvaible()
+{
+    global $con;
+    $sql = ("SELECT COUNT(*) FROM posts WHERE isAvaible = 1");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["COUNT(*)"];
+    } else {
+        return null;
+    }
+}
+
+function getInventoryCost($dpi)
+{
+    global $con;
+    $sql = ("SELECT SUM(p.price) FROM user_inventory ui LEFT JOIN products p ON p.UIDC = ui.product_uidc WHERE ui.trader_dpi = '$dpi'");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["SUM(p.price)"];
+    } else {
+        return null;
+    }
+}
+
+function getTotallyOffers($dpi)
+{
+    global $con;
+    $sql = ("SELECT COUNT(*) FROM posts p
+                RIGHT JOIN offers o ON o.post_uid = p.UIDC WHERE p.trader_dpi = '$dpi'");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["COUNT(*)"];
+    } else {
+        return null;
+    }
+}
+
+function getPendingOffers($dpi)
+{
+    global $con;
+    $sql = ("SELECT COUNT(*) FROM posts p
+                RIGHT JOIN offers o ON o.post_uid = p.UIDC WHERE p.trader_dpi = '$dpi' AND offerstate = 0");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["COUNT(*)"];
+    } else {
+        return null;
+    }
+}
+
+function getTotallInventoryProducts($dpi)
+{
+    global $con;
+    $sql = ("SELECT COUNT(*) FROM user_inventory WHERE trader_dpi = '$dpi'");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["COUNT(*)"];
+    } else {
+        return null;
+    }
+}
+
+function getNotPendingOffers($dpi)
+{
+    global $con;
+    $sql = ("SELECT COUNT(*) FROM posts p
+                RIGHT JOIN offers o ON o.post_uid = p.UIDC WHERE p.trader_dpi = '$dpi' AND offerstate != 0");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["COUNT(*)"];
+    } else {
+        return null;
+    }
+}
