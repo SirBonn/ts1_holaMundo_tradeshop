@@ -1,18 +1,29 @@
 <?php
+require_once __DIR__ . '/../../config/routes.php';
+require_once __DIR__ . '/../../model/User.php';
 require_once '../../controller/getterLists.php';
 require_once '../../controller/elementCounter.php';
-
 ?>
+<?php
+session_start();
 
+if (isset($_SESSION['usr'])) {
+    $user = $_SESSION['usr'];
+    if ($user->getRol() != 0) {
+        header("Location: " . getMain());
+        exit();
+    }
+} else {
+    header("Location: " . getMain());
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
 include '../includes/head.php';
 ?>
-<style>
-    .card-scroll {}
-</style>
 
 
 <body>
@@ -145,9 +156,9 @@ include '../includes/head.php';
                             echo "    <h5 class=\"card-title\">" . $tr->getProduct()->getName() . "</h5>";
                             echo $tr->getDescription();
                             if ($tr->getProduct()->isIntercambiable()) {
-                                echo "<p class=\"text-right\"> Producto Intercambiable </p>";
+                                echo "<p class=\"text-right\"> <small>Producto Intercambiable </small></p>";
                             } else {
-                                echo "<p class=\"text-right\"> Costo: Q." . $tr->getProduct()->getPrice() . "</p>";
+                                echo "<p class=\"text-right\"> <small> Costo: Q." . $tr->getProduct()->getPrice() . "</small></p>";
                             }
                             echo "</div>";
                             echo "<div class=\"card-footer text-right\">";
@@ -164,9 +175,31 @@ include '../includes/head.php';
                     <div class="card-body" style="max-height: 350px; overflow-y: auto;">
 
                         <?php
-                        $traders = getTraders();
-                        foreach ($traders as $tr) {
-                            echo "<p>" . $tr->getName() . "</p>";
+                        $trades = getLatestTrades();
+                        foreach ($trades as $tr) {
+                            echo "<div class=\"card\">";
+                            echo "<div class=\"card-header\">";
+                            echo "            <h4> Producto intercambiado: " . $tr->getOffer()->getPost()->getProduct()->getName() . "</h4>";
+                            if ($tr->getType() == 0) {
+                                echo "            <h5><small> por: " . $tr->getOffer()->getPaidProduct()->getName() . "</small></h5";
+                            } else {
+                                echo "            <h5><small> por: Q. " . $tr->getOffer()->getAmount() . "</small></h5";
+                            }
+                            echo "</div>";
+                            echo "</div>";
+                            echo "<div class=\"card-body\">";
+                            if ($tr->getType() == 0) {
+                                echo "    <h5 class=\"card-title\"> Intercambio </h5>";
+                            } else {
+                                echo "    <h5 class=\"card-title\"> Venta </h5>";
+                            }
+
+                            echo $tr->getOffer()->getMessage();
+                            echo "</div>";
+                            echo "<div class=\"card-footer text-right\">";
+                            echo "            <small>" . " Aceptado el " . $tr->getDate() . "</small>";
+                            echo "</div>";
+                            echo "</div> <br>";
                         }
                         ?>
 

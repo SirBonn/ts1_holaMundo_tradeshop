@@ -1,44 +1,45 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <script src="../../../public/Js/modal-settings.js"></script>
+
 </head>
 
 <body>
-    <header class="bg-dark site-header py-1">
-        <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="../../../index.php" aria-label="Product">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
-                    viewBox="0 0 24 24">
-                    <title>Product</title>
-                    <circle cx="12" cy="12" r="10" />
-                    <path
-                        d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
-                </svg>
-            </a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
-        </nav>
-    </header>
+
+    <?php
+    include '../includes/navbar.php';
+    ?>
 
     <section class="hero is-ghost is-fullheight">
+
+        <?php
+        session_start();
+
+        if (isset($_SESSION["error_message"])) {
+            echo '<div class="notification is-danger">
+        <button class="delete"></button>
+        ' . $_SESSION["error_message"] . '
+        </div>';
+            unset($_SESSION["error_message"]);
+        }
+         session_destroy();
+        ?>
+
         <div class="hero-body">
             <div class="container">
                 <div class="columns is-centered">
                     <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                        <form method="post" class="box">
+                        <form method="post" action="../../controller/logincontroller.php" class="box">
                             <div class="field">
                                 <label for="" class="label">Email</label>
                                 <div class="control has-icons-left">
-                                    <input name="username" type="text" placeholder="" class="input">
+                                    <input name="username" type="text" placeholder="usernanme" class="input">
                                     <span class="icon is-small is-left">
                                         <i class="fa fa-envelope"></i>
                                     </span>
@@ -53,14 +54,13 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label for="" class="checkbox">
-                                    <input type="checkbox">
-                                    Remember me
-                                </label>
+                            <div class="field text-right">
+                                <a class="js-modal-trigger" data-target="register-modal">
+                                    Open JS example modal
+                                </a>
                             </div>
 
-                            <div class="field">
+                            <div class="field text-center">
                                 <button name="succesBtn" class="button is-success">
                                     Login
                                 </button>
@@ -69,14 +69,71 @@
                                 </a>
                             </div>
                         </form>
-                        <?php
-                        include '../../controller/logincontroller.php';
-                        ?>
+
                     </div>
                 </div>
             </div>
         </div>
-    </section>s
+    </section>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+
+            <section class="modal-card-body">
+                <form method="post" action="../../controller/singinController.php">
+                    <div class="field">
+                        <label class="label">DPI</label>
+                        <div class="control">
+                            <input name="dpi" class="input" type="number" placeholder="Text input">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input name="username" class="input" type="text" placeholder="Text input">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input name="password" class="input" type="text" placeholder="Text input">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                    <label class="label">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input name="email" class="input" type="email" placeholder="Text input">
+                        </div>
+                    </div>
+                    <div class="field">
+                    <label class="label">Nacimiento</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input name="birthdate" class="input" type="date">
+                        </div>
+                    </div>
+
+            </section>
+            <footer class="modal-card-foot">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link">Submit</button>
+                    </div>
+                    <div class="control">
+                        <a class="button is-link is-light">Cancel</a>
+                    </div>
+                </div>
+            </footer>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
