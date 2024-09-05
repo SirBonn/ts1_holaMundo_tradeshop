@@ -14,6 +14,9 @@ class Product {
         $this->isIntercambiable = $isIntercambiable;
     }
     
+    public function getId() {
+        return $this->id_product;
+    }
 
     public function getName() {
         return $this->name_product;

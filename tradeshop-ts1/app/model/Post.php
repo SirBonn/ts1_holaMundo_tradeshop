@@ -5,14 +5,12 @@ class Post{
     public $productID;
     public $date;
     public $description;
-    public $price;
     public $isAvailable;
 
-    public function __construct($id_post,  $date, $description, $price, $isAvailable){
+    public function __construct($id_post,  $date, $description, $isAvailable){
         $this->id_post = $id_post;
         $this->date = $date;
         $this->description = $description;
-        $this->price = $price;
         $this->isAvailable = $isAvailable;
     }
 
@@ -36,9 +34,6 @@ class Post{
         return $this->description;
     }
 
-    public function getPrice(){
-        return $this->price;
-    }
 
     public function getIsAvailable(){
         return $this->isAvailable;

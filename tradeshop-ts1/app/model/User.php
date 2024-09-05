@@ -8,10 +8,9 @@ class User{
     private $rol;
     private $isActive;
 
-    public function __construct($DPI, $username, $usrpass, $email, $rol, $isActive){
+    public function __construct($DPI, $username, $email, $rol, $isActive){
         $this->DPI = $DPI;
         $this->username = $username;
-        $this->usrpass = $usrpass;
         $this->email = $email;
         $this->rol = $rol;
         $this->isActive = $isActive;
@@ -25,6 +24,11 @@ class User{
         return $this->username;
     }
 
+    public function setPassword($password){
+        // $this->usrpass = password_hash($password, PASSWORD_BCRYPT);
+        $this->usrpass = $password;
+    }
+
     public function getUsrpass(){
         return $this->usrpass;
     }
@@ -35,6 +39,10 @@ class User{
 
     public function getRol(){
         return $this->rol;
+    }
+
+    public function isAdmin(){
+        return $this->rol == 0;
     }
 
     public function getIsActive(){

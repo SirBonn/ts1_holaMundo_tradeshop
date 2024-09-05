@@ -6,10 +6,9 @@ class Trade{
     public $offer;
     public $type;
 
-    public function __construct($id_trade, $date, $offer, $type){
+    public function __construct($id_trade, $date, $type){
         $this->id_trade = $id_trade;
         $this->date = $date;
-        $this->offer = $offer;
         $this->type = $type;
     }
 
@@ -19,6 +18,10 @@ class Trade{
 
     public function getDate(){
         return $this->date;
+    }
+
+    public function setOffer($offer){
+        $this->offer = $offer;
     }
 
     public function getOffer(){
@@ -34,4 +37,5 @@ class Trade{
     }
 
 }
+
 ?>

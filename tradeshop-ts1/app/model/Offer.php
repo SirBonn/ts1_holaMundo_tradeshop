@@ -1,5 +1,6 @@
-<?php 
-class Offer{
+<?php
+class Offer
+{
     public $id_offer;
     public $date;
     public $amount;
@@ -7,49 +8,80 @@ class Offer{
     public $state;
     public $message;
     public $dpiTrader;
+    public $post;
 
-    public function __construct($id_offer, $date, $amount, $paidProduct, $state, $message, $dpiTrader) {
+    public function __construct(
+        $id_offer,
+        $date,
+        $amount,
+        $state,
+        $message
+
+    ) {
         $this->id_offer = $id_offer;
         $this->date = $date;
         $this->amount = $amount;
-        $this->paidProduct = $paidProduct;
         $this->state = $state;
         $this->message = $message;
-        $this->dpiTrader = $dpiTrader;
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id_offer;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
-    public function getAmount() {
+    public function getAmount()
+    {
         return $this->amount;
     }
 
-    public function getPaidProduct() {
+    public function setPaidProduct($paidProduct)
+    {
+        $this->paidProduct = $paidProduct;
+    }
+
+    public function getPaidProduct()
+    {
         return $this->paidProduct;
     }
 
-    public function getState() {
+    public function getState()
+    {
         return $this->state;
     }
 
-    public function getMessage() {
+    public function getMessage()
+    {
         return $this->message;
     }
 
-    public function getDpiTrader() {
+    public function setTrader($dpiTrader)
+    {
+        $this->dpiTrader = $dpiTrader;
+    }
+
+    public function getTrader()
+    {
         return $this->dpiTrader;
     }
 
-    public function toString() {
-        return $this->id_offer . " -- " . $this->date . " -- " . $this->amount . " -- " . $this->paidProduct . " -- " . $this->state . " -- " . $this->message . " -- " . $this->dpiTrader;
+    public function setPost($post)
+    {
+        $this->post = $post;
     }
 
-    
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    public function toString()
+    {
+        return $this->id_offer . " -- " . $this->date . " -- " . $this->amount . " -- " . $this->paidProduct . " -- " . $this->state . " -- " . $this->message . " -- " . $this->dpiTrader;
+    }
 }
-?>
