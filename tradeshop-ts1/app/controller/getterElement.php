@@ -1,18 +1,31 @@
 <?php
-require_once '../../model/Trader.php';
-require_once '../../model/Post.php';
-require_once '../../model/Product.php';
-require_once '../../model/Card.php';
-require_once '../../model/Inventory.php';
-require_once '../../model/Offer.php';
-require_once '../../model/Payment.php';
-require_once '../../model/Shipment.php';
-require_once '../../model/Trade.php';
-require_once '../../model/User.php';
-require_once '../../config/db_conection.php';
+require_once __DIR__ . '/../model/Trader.php';
+require_once __DIR__ . '/../model/Post.php';
+require_once __DIR__ . '/../model/Product.php';
+require_once __DIR__ . '/../model/Card.php';
+require_once __DIR__ . '/../model/Inventory.php';
+require_once __DIR__ . '/../model/Offer.php';
+require_once __DIR__ . '/../model/Payment.php';
+require_once __DIR__ . '/../model/Shipment.php';
+require_once __DIR__ . '/../model/Trade.php';
+require_once __DIR__ . '/../model/User.php';
+require_once __DIR__ . '/../config/db_conection.php';
 
 
 $con = connect();
+
+function getUser($username, $password){
+    global $con;
+    $sql = ("SELECT * FROM users WHERE username = '$username' AND usrpass = '$password'");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return new User($row["DPI"], $row["username"], $row["usrpass"], $row["usr_rol"], $row["email"],  $row["isActive"]);
+    } else {
+        return null;
+    }
+}
+
 
 function getTrader($dpi)
 {
@@ -42,4 +55,49 @@ function getProduct($id)
 
 }
 
+function getPost($id)
+{
+    global $con;
+    $sql = ("SELECT * FROM posts WHERE UIDC = '$id'");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $post = new Post($row["UIDC"], $row["postAt"], $row["desc_post"], $row["isAvaible"]);
+        $post->setTrader(getTrader($row["trader_dpi"]));
+        $post->setProduct(getProduct($row["product_uidc"]));
+        return $post;
+    } else {
+        return null;
+    }
+
+}
+
+function getOffer($id)
+{
+    global $con;
+    $sql = ("SELECT * FROM offers WHERE UIDC = '$id'");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $offer = new Offer($row["UIDC"], $row["offerdate"], $row["amount"], $row["offerstate"], $row["offermessage"]);
+        $offer->setPaidProduct(getProduct($row["paid_product"]));
+        $offer->setTrader(getTrader($row["trader_dpi"]));
+        $offer->setPost(getPost($row["post_uid"]));
+        return $offer;
+    } else {
+        return null;
+    }
+
+}
+
+function verifyInventory($uidc, $dpi){
+    global $con;
+    $sql = ("SELECT * FROM user_inventory WHERE product_uidc = '$uidc' AND trader_dpi = '$dpi'");
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 ?>
