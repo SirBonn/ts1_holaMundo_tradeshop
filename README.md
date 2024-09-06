@@ -61,60 +61,6 @@ Accede a la aplicación:
 Abre tu navegador y navega a http://localhost/tradeshop-ts1/ para acceder a la aplicación web.
 
 
-# Tradeshop
-
-
-
-Esta es una aplicación web desarrollada utilizando PHP, MySQL, HTML, CSS y JavaScript. El objetivo del proyecto es representar un sistema informatico a traves de una aplicacion web.
-
-Tecnologías Utilizadas
-- PHP: Lenguaje de programación del lado del servidor para la lógica de negocio y la generación dinámica de contenido.
-- MySQL: Sistema de gestión de bases de datos relacional para el almacenamiento y la gestión de datos.
-- HTML: Lenguaje de marcado para la estructura de las páginas web.
-- CSS: Lenguaje de hojas de estilo para el diseño y la presentación visual de la aplicación.
-- JavaScript: Lenguaje de programación del lado del cliente para la interactividad y la manipulación dinámica de la interfaz de usuario.
-
-Primer practica para el curso de Teoria en sistemas 1
-
-Universidad de San Carlos de cuatemala -USAC-
-
-Centro Universitario De Occidente -CUNOC-
-# Tradeshop
-
-
-
-Esta es una aplicación web desarrollada utilizando PHP, MySQL, HTML, CSS y JavaScript. El objetivo del proyecto es representar un sistema informatico a traves de una aplicacion web.
-
-Tecnologías Utilizadas
-- PHP: Lenguaje de programación del lado del servidor para la lógica de negocio y la generación dinámica de contenido.
-- MySQL: Sistema de gestión de bases de datos relacional para el almacenamiento y la gestión de datos.
-- HTML: Lenguaje de marcado para la estructura de las páginas web.
-- CSS: Lenguaje de hojas de estilo para el diseño y la presentación visual de la aplicación.
-- JavaScript: Lenguaje de programación del lado del cliente para la interactividad y la manipulación dinámica de la interfaz de usuario.
-
-Primer practica para el curso de Teoria en sistemas 1
-
-Universidad de San Carlos de cuatemala -USAC-
-
-Centro Universitario De Occidente -CUNOC-
-# Tradeshop
-
-
-
-Esta es una aplicación web desarrollada utilizando PHP, MySQL, HTML, CSS y JavaScript. El objetivo del proyecto es representar un sistema informatico a traves de una aplicacion web.
-
-Tecnologías Utilizadas
-- PHP: Lenguaje de programación del lado del servidor para la lógica de negocio y la generación dinámica de contenido.
-- MySQL: Sistema de gestión de bases de datos relacional para el almacenamiento y la gestión de datos.
-- HTML: Lenguaje de marcado para la estructura de las páginas web.
-- CSS: Lenguaje de hojas de estilo para el diseño y la presentación visual de la aplicación.
-- JavaScript: Lenguaje de programación del lado del cliente para la interactividad y la manipulación dinámica de la interfaz de usuario.
-
-Primer practica para el curso de Teoria en sistemas 1
-
-Universidad de San Carlos de cuatemala -USAC-
-
-Centro Universitario De Occidente -CUNOC-
 ## Documentation
 
 [Manual tecnico](https://github.com/SirBonn/ts1_holaMundo_tradeshop/blob/main/Documentation/pracc_HolaMundo_ManualTecnico.pdf)
